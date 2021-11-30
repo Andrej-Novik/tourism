@@ -1,0 +1,11 @@
+@import "../../../assets//styles/common.scss";
+
+.footer {
+  .container {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+  }
+}
