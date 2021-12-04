@@ -1,7 +1,12 @@
+import ObjectInfo from "../../organisms/ObjectInfo";
 import style from "./style.module.scss";
 
 const Object = () => {
-  return <div>Object</div>;
+  return (
+    <div>
+      <ObjectInfo />
+    </div>
+  );
 };
 
 export default Object;

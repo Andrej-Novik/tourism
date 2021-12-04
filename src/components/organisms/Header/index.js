@@ -1,15 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import style from "./styles.module.scss";
 
 const Header = () => {
+  const catalogStyle =
+    useLocation().pathname === "/catalog"
+      ? style.catalog + " " + style.forCardList
+      : style.catalog;
   return (
     <header className={style.header}>
       <div className={style.container}>
         <Link to={"/"}>
-          <div className={style.logo}>LOGO</div>
+          <div className={style.logo}>TRAVEL</div>
         </Link>
         <Link to={"/catalog"}>
-          <div className={style.catalog}>
+          <div className={catalogStyle}>
             <span></span>
             <span>Каталог</span>
           </div>
