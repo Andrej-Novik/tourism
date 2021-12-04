@@ -1,9 +1,0 @@
-@mixin container {
-  max-width: 76rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  @include mobile {
-    max-width: 75rem;
-    padding: 0 1rem;
-  }
-}
