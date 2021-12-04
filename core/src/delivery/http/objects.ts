@@ -52,14 +52,14 @@ router.post("", async (req, res) => {
 //   res.status(200).json(value);
 // });
 
-// router.get("/:id", async (req, res) => {
-//   const { value, error } = await UseCases.ObjectsService.getUser(req.params.id);
-//   if (error) {
-//     res.status(500).json(error || new Error("UC undefined error"));
-//     return;
-//   }
-//   res.status(200).json(value);
-// });
+router.get("/:id", async (req, res) => {
+  const { value, error } = await UseCases.ObjectsService.getObject(req.params.id);
+  if (error) {
+    res.status(500).json(error || new Error("UC undefined error"));
+    return;
+  }
+  res.status(200).json(value);
+});
 
 
 export default router;

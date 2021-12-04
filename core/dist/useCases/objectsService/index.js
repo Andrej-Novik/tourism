@@ -12,6 +12,17 @@ class ObjectsService {
                 return { error: error };
             return { value: value };
         };
+        // getUser = async (id: string) => {
+        //   const { value, error } = await UsersRepository.getUser(id);
+        //   if (error) return { error: error };
+        //   return { value: value };
+        // };
+        this.getObject = async (id) => {
+            const { value, error } = await object_1.default.getObject(id);
+            if (error)
+                return { error: error };
+            return { value: value };
+        };
         this.createObject = async (img, name, country, text, rate) => {
             const { value, error } = await object_1.default.createObject(img, name, country, text, rate);
             if (error)

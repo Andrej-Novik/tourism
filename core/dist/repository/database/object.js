@@ -17,6 +17,16 @@ class ObjectRepository {
                 return { error: e };
             }
         };
+        this.getObject = async (id) => {
+            var _a;
+            try {
+                const response = await ((_a = connector_1.default.connector) === null || _a === void 0 ? void 0 : _a.getRepository(object_1.ObjectItem).findOne({ where: { id } }));
+                return { value: response };
+            }
+            catch (e) {
+                return { error: e };
+            }
+        };
         this.createObject = async (img, name, country, text, rate) => {
             var _a;
             try {

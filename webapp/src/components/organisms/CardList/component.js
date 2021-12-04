@@ -20,6 +20,7 @@ const CardList = ({ objects, isError, isLoader }) => {
                 title={card.name}
                 country={card.country}
                 rate={card.rate}
+                id={card.id}
               />
             );
           })}

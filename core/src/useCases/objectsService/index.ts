@@ -5,6 +5,16 @@ class ObjectsService {
     if (error) return { error: error };
     return { value: value };
   };
+    // getUser = async (id: string) => {
+  //   const { value, error } = await UsersRepository.getUser(id);
+  //   if (error) return { error: error };
+  //   return { value: value };
+  // };
+  getObject = async(id: string) => {
+    const { value, error } = await ObjectRepository.getObject(id);
+    if (error) return { error: error };
+    return { value: value };
+  }
   createObject = async (
     img: string,
     name: string,
