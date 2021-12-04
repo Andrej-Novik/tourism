@@ -1,0 +1,44 @@
+@import "../../../assets/styles/common.scss";
+
+.card {
+  display: flex;
+  @include cardBorder;
+  overflow: hidden;
+  .image {
+    width: 10rem;
+    height: 10rem;
+    flex: 0 0 10rem;
+    @include custom(450) {
+      width: 8rem;
+      height: 10rem;
+      flex: 0 0 8rem;
+    }
+  }
+  .info {
+    padding: 1rem 1.5rem;
+    .country {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      color: $country;
+      background-color: $countryBg;
+      margin: 0 0 0.75rem 0;
+      @include H12;
+    }
+    .title {
+      margin: 0 0 0.75rem 0;
+    }
+    .rate {
+      margin: 0 0 0.75rem 0;
+      img {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+    .more {
+      @include H12;
+      color: $gray;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
