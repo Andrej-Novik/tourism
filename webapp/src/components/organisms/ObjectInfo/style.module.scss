@@ -1,0 +1,77 @@
+@import "../../../assets/styles/common.scss";
+
+.wrapper {
+  background-color: $grayBg;
+  min-height: calc(100vh - 10rem);
+  .container {
+    @include container;
+    padding-top: 2.5rem;
+    .link {
+      display: flex;
+      align-items: center;
+      margin: 0 0 2.5rem 0;
+      img {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex: 0 0 1.25rem;
+        margin: 0 0.5rem 0 0;
+      }
+    }
+    .object {
+      display: flex;
+      margin: 0 0 2.5rem 0;
+      .image {
+        flex: 0 1 50%;
+      }
+      .info {
+        padding: 0 0 0 5rem;
+        .country {
+          display: inline-block;
+          padding: 0.75rem 1rem;
+          color: $country;
+          background-color: $countryBg;
+          margin: 0 0 2rem 0;
+        }
+        .title {
+          margin: 0 0 2rem 0;
+          @include H32;
+        }
+        .rate {
+          margin: 0 0 0.75rem 0;
+          display: flex;
+          align-items: center;
+          font-size: 1.25rem;
+          p {
+            margin: 0 0.5rem 0 0;
+          }
+          img {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+        .change {
+          cursor: pointer;
+          text-decoration: underline;
+          color: $gray;
+          font-size: 0.875rem;
+        }
+        .form {
+          margin: 1rem 0 0 0;
+          input {
+            padding: 0.2rem;
+          }
+          button {
+            padding: 0.2rem;
+            margin: 0 0 0 0.5rem;
+          }
+          p {
+            color: red;
+          }
+        }
+      }
+    }
+    .text {
+      line-height: 1.6rem;
+    }
+  }
+}

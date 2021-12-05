@@ -1,8 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getObjectFromBD } from '../../../useCases/actions/objects';
-import ObjectInfo from './component';
-import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getObjectFromBD } from "../../../useCases/actions/objects";
+import ObjectInfo from "./component";
+import { useLocation } from "react-router-dom";
 
 const ObjectInfoContainer = () => {
   const dispatch = useDispatch();
@@ -10,13 +10,15 @@ const ObjectInfoContainer = () => {
   const currentObject = useSelector((state) => state.objects.currentObject);
 
   useEffect(() => {
-    console.log('work');
     dispatch(getObjectFromBD(id));
   }, []);
 
   const isError = useSelector((state) => state.objects.isError);
   const isLoader = useSelector((state) => state.objects.isLoader);
-  console.log(id);
+
+  const submit = (newRate) => {
+    console.log(newRate);
+  };
 
   return (
     <ObjectInfo
@@ -24,7 +26,10 @@ const ObjectInfoContainer = () => {
       name={currentObject.name}
       country={currentObject.country}
       text={currentObject.text}
-      rate={currentObject.rate}
+			rate={currentObject.rate}
+			isError={isError}
+			isLoader={isLoader}
+      submit={submit}
     />
   );
 };
