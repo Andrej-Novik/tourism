@@ -37,3 +37,12 @@ export const getObjectFromBD = (id) => async (dispatch) => {
   dispatch(setCurrentObject(value));
   dispatch(objectsLoading(false));
 }
+export const setObjectsIntoBD = (img, name, country, text, rate) => async (dispatch) => {
+  dispatch(objectsLoading(true));
+  const { value, error } = await Repository.APIObjects.createObject(img, name, country, text, rate);
+  if (!value || error) {
+    dispatch(loadingError(true));
+  }
+  dispatch(setStateObjects(value));
+  dispatch(objectsLoading(false));
+};

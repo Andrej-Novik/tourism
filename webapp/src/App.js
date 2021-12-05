@@ -5,6 +5,7 @@ import Object from "./components/pages/Object";
 import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
 import style from "./app.module.scss";
+//https://wikiway.com/dostoprimechatelnosti/top100/
 
 function App() {
   return (
