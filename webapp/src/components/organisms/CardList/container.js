@@ -20,24 +20,24 @@ const CardListContainer = () => {
 	console.log(json)
 
 
-  const setObjects = () => {
-		for (let i = 0; i <= json.length - 1; i++) {
-      dispatch(
-        setObjectsIntoBD(
-          json[i].img,
-          json[i].name,
-          json[i].country,
-          json[i].text,
-          json[i].rate
-        )
-      );
-    }
-  };
+  //const setObjects = () => {
+	//	for (let i = 0; i <= json.length - 1; i++) {
+  //    dispatch(
+  //      setObjectsIntoBD(
+  //        json[i].img,
+  //        json[i].name,
+  //        json[i].country,
+  //        json[i].text,
+  //        json[i].rate
+  //      )
+  //    );
+  //  }
+  //;
 
   return (
     <div>
       <CardList objects={objects} isError={isError} isLoader={isLoader} />
-      <button onClick={setObjects}>SET</button>
+      {/*<button onClick={setObjects}>SET</button>*/}
     </div>
   );
 };

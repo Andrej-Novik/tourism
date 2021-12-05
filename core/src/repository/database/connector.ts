@@ -1,7 +1,7 @@
-import { createConnection, Connection } from 'typeorm'
+import { createConnection, Connection } from "typeorm";
 
 class DBConnector {
-	connector: Connection
+  connector: Connection;
 
 	createConnection = async () => {
 		this.connector = await createConnection({
@@ -22,4 +22,4 @@ class DBConnector {
 		}
 	}
 }
-export default new DBConnector()
+export default new DBConnector();
