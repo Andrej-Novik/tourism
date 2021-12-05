@@ -71,7 +71,7 @@ export class Core {
       error: null,
     };
     try {
-      const response = await Connector.connector.get(`/api/objects/`, id);
+      const response = await Connector.connector.get(`/api/objects/${id}`);
       result.value = response.data;
     } catch (e) {
       result.error = e.response;

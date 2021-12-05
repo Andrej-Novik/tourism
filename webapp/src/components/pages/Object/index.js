@@ -1,7 +1,6 @@
-import ObjectInfo from "../../organisms/ObjectInfo";
-import style from "./style.module.scss";
+import ObjectInfo from '../../organisms/ObjectInfo';
 
-const Object = () => {
+const ObjectItem = () => {
   return (
     <div>
       <ObjectInfo />
@@ -9,4 +8,4 @@ const Object = () => {
   );
 };
 
-export default Object;
+export default ObjectItem;

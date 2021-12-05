@@ -12,6 +12,14 @@ class ObjectRepository implements IObjectsRepository {
       return { error: e };
     }
   };
+    getObject = async (id: string) => {
+    try {
+      const response = await DBConnector.connector?.getRepository(ObjectItem).findOne({ where: { id } })
+      return { value: response };
+    } catch (e) {
+      return { error: e };
+    }
+  };
 	createObject = async (
     img: string,
     name: string,

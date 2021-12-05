@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import style from "./style.module.scss";
+import { Link } from 'react-router-dom';
+import style from './style.module.scss';
 
 const Card = ({ img, title, country, rate, id }) => {
   let temp = [];
@@ -12,7 +12,7 @@ const Card = ({ img, title, country, rate, id }) => {
   return (
     <Link to={`/object/${id}`} className={style.card}>
       <div className={style.image}>
-        <img src={img} />
+        <img src={img} alt="img" />
       </div>
       <div className={style.info}>
         <div className={style.country}>{country}</div>
@@ -23,6 +23,7 @@ const Card = ({ img, title, country, rate, id }) => {
               <img
                 key={i}
                 src="https://emojigraph.org/media/google/star_2b50.png"
+                alt="img"
               />
             );
           })}
