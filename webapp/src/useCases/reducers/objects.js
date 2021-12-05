@@ -4,23 +4,23 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
-  SET_SORT_OBJECTS
+  SET_SORT_OBJECTS,
 } from "../actionTypes/objects";
 
 export const initialState = {
   objects: [],
-	currentObject: {
-		img: "",
-		name: "",
-		country: "",
-		text: "",
-		rate: "",
-		id: ""
-
-	},
+  currentObject: {
+    img: "",
+    name: "",
+    country: "",
+    text: "",
+    rate: "",
+    id: "",
+  },
+  likedObjects: [],
   isError: false,
   isLoader: false,
-  sortBy: 'up'
+  sortBy: "up",
 };
 
 const objects = (state = initialState, action) => {
@@ -60,9 +60,7 @@ const objects = (state = initialState, action) => {
       let rate = action.rate;
       return {
         ...state,
-        currentObject: {...state.currentObject, rate }
-          
-        
+        currentObject: { ...state.currentObject, rate },
       };
     }
     default:

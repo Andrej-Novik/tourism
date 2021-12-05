@@ -1,48 +1,17 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import {
   getObjectsFromBD,
-  setObjectsIntoBD,
+  //setObjectsIntoBD,
   setStateObjects,
   setSortObjects,
-} from '../../../useCases/actions/objects';
-import CardList from './component';
+  setLikedObjects,
+} from "../../../useCases/actions/objects";
+import CardList from "./component";
 // import json from "../../../content.json";
 
 const CardListContainer = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getObjectsFromBD());
-  }, []);
-
-  const sortBy = useSelector((state) => state.objects.sortBy);
-  useEffect(() => {
-    dispatch(setSortObjects());
-  }, [sortBy]);
-  const objects = useSelector((state) => state.objects.objects);
-  const isError = useSelector((state) => state.objects.isError);
-  const isLoader = useSelector((state) => state.objects.isLoader);
-  // const objects = useSelector((state) => state.objects.objects);
-  const sortUp = (object) => {
-    const obj = object.sort((a, b) => (a.rate > b.rate ? 1 : -1));
-    dispatch(setStateObjects(obj));
-    dispatch(setSortObjects('up'));
-  };
-  const sortDown = (object) => {
-    const obj = object.sort((a, b) => (a.rate > b.rate ? -1 : 1));
-    dispatch(setStateObjects(obj));
-    dispatch(setSortObjects('down'));
-  };
-  // const onSortBy = (string) => {
-  //   if(string === 'up') {
-  //     console.log('up')
-  //     setCards(objects.sort((a, b) => a.rate > b.rate ? 1 : -1));
-  //   } else if(string === 'down') {
-  //     console.log('down')
-  //     setCards(objects.sort((a, b) => a.rate > b.rate ? -1 : 1));
-  //   }
-  // }
   //const setObjects = () => {
   //	for (let i = 0; i <= json.length - 1; i++) {
   //    dispatch(
@@ -57,6 +26,49 @@ const CardListContainer = () => {
   //  }
   //;
 
+  useEffect(() => {
+    dispatch(getObjectsFromBD());
+  }, []);
+
+  const sortBy = useSelector((state) => state.objects.sortBy);
+  useEffect(() => {
+    dispatch(setSortObjects());
+  }, [sortBy]);
+  const objects = useSelector((state) => state.objects.objects);
+  const isError = useSelector((state) => state.objects.isError);
+  const isLoader = useSelector((state) => state.objects.isLoader);
+
+  const sortUp = (object) => {
+    const obj = object.sort((a, b) => (a.rate > b.rate ? 1 : -1));
+    dispatch(setStateObjects(obj));
+    dispatch(setSortObjects("up"));
+  };
+  const sortDown = (object) => {
+    const obj = object.sort((a, b) => (a.rate > b.rate ? -1 : 1));
+    dispatch(setStateObjects(obj));
+    dispatch(setSortObjects("down"));
+  };
+
+  const setLiked = (obj) => {
+    let cards = JSON.parse(localStorage.getItem("liked")) || [];
+    console.log(cards);
+    if (cards.length) {
+      let is = false;
+      cards.forEach((i) => {
+        if (obj.id === i.id) {
+          is = true;
+        }
+      });
+      if (!is) {
+        cards.push(obj);
+        localStorage.setItem("liked", JSON.stringify(cards));
+      }
+    } else {
+      cards.push(obj);
+      localStorage.setItem("liked", JSON.stringify(cards));
+    }
+  };
+
   return (
     <div>
       <CardList
@@ -65,6 +77,7 @@ const CardListContainer = () => {
         isLoader={isLoader}
         sortUp={sortUp}
         sortDown={sortDown}
+        setLiked={setLiked}
       />
       {/*<button onClick={setObjects}>SET</button>*/}
     </div>

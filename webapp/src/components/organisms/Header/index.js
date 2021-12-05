@@ -12,6 +12,9 @@ const Header = () => {
         <Link to={"/"}>
           <div className={style.logo}>TRAVEL</div>
         </Link>
+        <Link to={"/liked"}>
+          <div className={style.logo}>LIKED</div>
+        </Link>
         <Link to={"/catalog"}>
           <div className={catalogStyle}>
             <span></span>

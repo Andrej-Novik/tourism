@@ -1,0 +1,12 @@
+@import "../../../assets/styles/common.scss";
+
+.wrapper {
+  background-color: $grayBg;
+  min-height: calc(100vh - 10rem);
+}
+.container {
+  @include container;
+  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
