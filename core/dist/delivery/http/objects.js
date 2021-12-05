@@ -14,6 +14,14 @@ router.get("", async (req, res) => {
     }
     res.status(200).json(value);
 });
+router.get("/pag/", async (req, res) => {
+    const { value, error } = await useCases_1.default.ObjectsService.getObjectsByQuery();
+    if (error) {
+        res.status(500).json(error || new Error("UC undefined error"));
+        return;
+    }
+    res.status(200).json(value);
+});
 router.post("", async (req, res) => {
     const { value, error } = await useCases_1.default.ObjectsService.createObject(req.body.img, req.body.name, req.body.country, req.body.text, req.body.rate);
     if (error) {
@@ -48,14 +56,6 @@ router.get("/:id", async (req, res) => {
 });
 router.get("/search/:name", async (req, res) => {
     const { value, error } = await useCases_1.default.ObjectsService.getObjectByName(req.params.name);
-    if (error) {
-        res.status(500).json(error || new Error("UC undefined error"));
-        return;
-    }
-    res.status(200).json(value);
-});
-router.get("/pag", async (req, res) => {
-    const { value, error } = await useCases_1.default.ObjectsService.getObjectsByQuery();
     if (error) {
         res.status(500).json(error || new Error("UC undefined error"));
         return;

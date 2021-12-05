@@ -75,9 +75,7 @@ class ObjectRepository implements IObjectsRepository {
       const response = await DBConnector.connector
         ?.getRepository(ObjectItem)
         .find();
-      const res = response.splice(0,5)
-      console.log(res)
-      return { value: res };
+      return { value: response };
     } catch (e) {
       return { error: e };
     }

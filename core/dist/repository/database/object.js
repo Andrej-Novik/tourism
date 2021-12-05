@@ -71,9 +71,7 @@ class ObjectRepository {
             var _a;
             try {
                 const response = await ((_a = connector_1.default.connector) === null || _a === void 0 ? void 0 : _a.getRepository(object_1.ObjectItem).find());
-                const res = response.splice(0, 5);
-                console.log(res);
-                return { value: res };
+                return { value: response };
             }
             catch (e) {
                 return { error: e };
