@@ -4,7 +4,9 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
-  SET_SORT_OBJECTS
+  SET_SORT_OBJECTS,
+  IS_SEARCH,
+  SEARCH_OBJECTS
 } from "../actionTypes/objects";
 import Repository from "../../repository";
 
@@ -73,5 +75,15 @@ export const updateRate = (id, rate) => async (dispatch) => {
   } else {
     dispatch(changeRate(id, rate));
   }
+  dispatch(objectsLoading(false));
+};
+
+export const setSearchObjects = (data) => ({ type: SEARCH_OBJECTS, payload: data });
+export const isSearch = (bool) => ({ type: IS_SEARCH, payload: bool });
+export const setSearchObjectsFromBD = (name = '') => async (dispatch) => {
+  dispatch(isSearch(true))
+  dispatch(objectsLoading(true));
+  const { value, error } = await Repository.APIObjects.searchObject(name);
+  error || !value ? dispatch(setSearchObjects([])) : dispatch(setSearchObjects([value]));
   dispatch(objectsLoading(false));
 };

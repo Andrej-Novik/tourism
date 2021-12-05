@@ -14,7 +14,7 @@ router.get("", async (req, res) => {
     }
     res.status(200).json(value);
 });
-router.get("/pag/", async (req, res) => {
+router.get("/pagination/", async (req, res) => {
     const { value, error } = await useCases_1.default.ObjectsService.getObjectsByQuery();
     if (error) {
         res.status(500).json(error || new Error("UC undefined error"));
