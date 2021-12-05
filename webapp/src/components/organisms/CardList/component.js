@@ -1,12 +1,20 @@
-import Card from "../../molecules/Card";
-import Loader from "../../atoms/Loader";
-import style from "./style.module.scss";
+import Card from '../../molecules/Card';
+import Loader from '../../atoms/Loader';
+import style from './style.module.scss';
+import { useEffect } from 'react';
 
-const CardList = ({ objects, isError, isLoader }) => {
+const CardList = ({ objects, isError, isLoader,sortUp, sortDown }) => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
-        <h2 className={style.title}>Каталог</h2>
+        <div className={style.block}>
+          <h2 className={style.title}>Каталог</h2>
+          <div className={style.btns}>
+            <span>Сортировать по:</span>
+            <button onClick={() => sortUp(objects)}>возр</button>
+            <button onClick={() => sortDown(objects)}>убыв</button>
+          </div>
+        </div>
         {isError ? (
           <div className={style.error}>TOURISM OBJECTS NOT FAUND</div>
         ) : isLoader ? (

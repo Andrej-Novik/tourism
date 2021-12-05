@@ -4,11 +4,15 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
+  SET_SORT_OBJECTS
 } from "../actionTypes/objects";
 import Repository from "../../repository";
 
 export const setStateObjects = (objects) => {
   return { type: SET_STATE_OBJECTS, payload: objects };
+};
+export const setSortObjects = (objects) => {
+  return { type: SET_SORT_OBJECTS, payload: objects };
 };
 export function objectsLoading(value) {
   return { type: CHANGE_OBJECT_LOADER, value };

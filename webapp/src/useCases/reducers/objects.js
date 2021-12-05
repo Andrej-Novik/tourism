@@ -4,6 +4,7 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
+  SET_SORT_OBJECTS
 } from "../actionTypes/objects";
 
 export const initialState = {
@@ -19,6 +20,7 @@ export const initialState = {
 	},
   isError: false,
   isLoader: false,
+  sortBy: 'up'
 };
 
 const objects = (state = initialState, action) => {
@@ -27,6 +29,12 @@ const objects = (state = initialState, action) => {
       return {
         ...state,
         objects: action.payload,
+      };
+    }
+    case SET_SORT_OBJECTS: {
+      return {
+        ...state,
+        sortBy: action.payload,
       };
     }
     case CHANGE_OBJECT_LOADER: {
