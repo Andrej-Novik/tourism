@@ -4,7 +4,9 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
-  SET_SORT_OBJECTS
+  SET_SORT_OBJECTS,
+  IS_SEARCH,
+  SEARCH_OBJECTS
 } from "../actionTypes/objects";
 
 export const initialState = {
@@ -18,6 +20,8 @@ export const initialState = {
 		id: ""
 
 	},
+  isSearch: false,
+  searchObject: [],
   isError: false,
   isLoader: false,
   sortBy: 'up'
@@ -63,6 +67,18 @@ const objects = (state = initialState, action) => {
         currentObject: {...state.currentObject, rate }
           
         
+      };
+    }
+    case IS_SEARCH: {
+      return {
+        ...state,
+        isSearch: action.payload,
+      };
+    }
+    case SEARCH_OBJECTS: {
+      return {
+        ...state,
+        searchObject: action.payload,
       };
     }
     default:

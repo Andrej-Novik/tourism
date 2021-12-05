@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import './assets/styles/common.scss'
 import Main from "./components/pages/Main";
 import Catalog from "./components/pages/Catalog";
 import Object from "./components/pages/Object";
