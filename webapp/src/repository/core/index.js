@@ -21,7 +21,7 @@ export class Core {
       error: null,
     };
     try {
-      const response = await Connector.connector.delete(`/api/users/${id}`);
+      const response = await Connector.connector.delete(`/api/objects/${id}`);
       result.value = response.data;
     } catch (e) {
       result.error = e.response;
@@ -35,7 +35,7 @@ export class Core {
       error: null,
     };
     try {
-      const response = await Connector.connector.post(`/api/users/`, {
+      const response = await Connector.connector.post(`/api/objects/`, {
         img,
         name,
         country,
@@ -55,7 +55,7 @@ export class Core {
       error: null,
     };
     try {
-      const response = await Connector.connector.patch(`/api/users/${id}`, {
+      const response = await Connector.connector.patch(`/api/objects/${id}`, {
         rate,
       });
       result.value = response.data;
@@ -71,7 +71,7 @@ export class Core {
       error: null,
     };
     try {
-      const response = await Connector.connector.get(`/api/users/`, id);
+      const response = await Connector.connector.get(`/api/objects/`, id);
       result.value = response.data;
     } catch (e) {
       result.error = e.response;

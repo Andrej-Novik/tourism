@@ -24,7 +24,7 @@ const CardList = ({ objects, isError, isLoader }) => {
             );
           })}
         </div>
-      )}
+			)}
     </div>
   );
 };
