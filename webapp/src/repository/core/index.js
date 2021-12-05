@@ -65,13 +65,13 @@ export class Core {
     return result;
   };
 
-  getObject = async (id) => {
+	getObject = async (name) => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await Connector.connector.get(`/api/objects/${id}`);
+      const response = await Connector.connector.get(`/api/objects/${name}`);
       result.value = response.data;
     } catch (e) {
       result.error = e.response;

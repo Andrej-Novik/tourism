@@ -1,22 +1,57 @@
 @import "../../../assets/styles/common.scss";
 
-.container {
-  @include container;
-  .title {
-    @include H32;
-    margin: 0 0 1.5rem 0;
-  }
-  .error {
-    @include H32;
-    font-size: 2rem;
-    color: red;
-  }
-  .list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    @include custom(850) {
-      grid-template-columns: 1fr;
+.wrapper {
+  background-color: $grayBg;
+  min-height: calc(100vh - 10rem);
+  padding: 5rem 0 0 0;
+  .container {
+    @include container;
+    .form {
+      max-width: 50rem;
+      margin: 0 auto 5rem auto;
+      position: relative;
+      input {
+        @include cardBorder;
+        outline: none;
+        border: none;
+        height: 3.5rem;
+        width: 100%;
+        padding: 0 1rem;
+        font-size: 1.1rem;
+      }
+      .search {
+        content: "Найти";
+        position: absolute;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        top: 50%;
+        right: 1rem;
+        transform: translate(0, -50%);
+        img {
+          width: 1rem;
+          height: 1rem;
+          margin: 0 0.5rem 0 0;
+        }
+      }
+    }
+    .title {
+      @include H32;
+      margin: 0 0 1.5rem 0;
+    }
+    .error {
+      @include H32;
+      font-size: 2rem;
+      color: red;
+    }
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 0 0 3.5rem 0;
+      @include custom(850) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
