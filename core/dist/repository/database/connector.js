@@ -5,20 +5,20 @@ class DBConnector {
     constructor() {
         this.createConnection = async () => {
             this.connector = await typeorm_1.createConnection({
-                type: "postgres",
+                type: 'postgres',
                 host: "localhost",
                 username: "postgres",
-                password: "Robin_2002",
+                password: "postgres",
                 database: "tourism",
-                entities: ["dist/models/dbm/*{.ts,.js}"],
-                migrations: ["dist/migrations/*{.ts,.js}"],
+                entities: ['dist/models/dbm/*{.ts,.js}'],
+                migrations: ['dist/migrations/*{.ts,.js}'],
                 logging: true,
             });
             const isMigrationsNeed = await this.connector.showMigrations();
             if (isMigrationsNeed) {
-                console.log("STARTING MIGRATION");
+                console.log('STARTING MIGRATION');
                 await this.connector.runMigrations();
-                console.log("MIGRATION SUCCEED");
+                console.log('MIGRATION SUCCEED');
             }
         };
     }

@@ -11,6 +11,14 @@ router.get("", async (req, res) => {
   res.status(200).json(value);
 });
 
+router.get("/pag/", async (req,res) => {
+  const { value, error } = await UseCases.ObjectsService.getObjectsByQuery();
+  if (error) {
+    res.status(500).json(error || new Error("UC undefined error"));
+    return;
+  }
+  res.status(200).json(value);
+})
 router.post("", async (req, res) => {
   const { value, error } = await UseCases.ObjectsService.createObject(
     req.body.img,
@@ -65,14 +73,5 @@ router.get("/search/:name", async (req, res) => {
   }
   res.status(200).json(value);
 });
-
-router.get("/pag", async (req,res) => {
-  const { value, error } = await UseCases.ObjectsService.getObjectsByQuery();
-  if (error) {
-    res.status(500).json(error || new Error("UC undefined error"));
-    return;
-  }
-  res.status(200).json(value);
-})
 
 export default router;
