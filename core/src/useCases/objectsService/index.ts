@@ -5,16 +5,16 @@ class ObjectsService {
     if (error) return { error: error };
     return { value: value };
   };
-    // getUser = async (id: string) => {
+  // getUser = async (id: string) => {
   //   const { value, error } = await UsersRepository.getUser(id);
   //   if (error) return { error: error };
   //   return { value: value };
   // };
-  getObject = async(id: string) => {
+  getObject = async (id: string) => {
     const { value, error } = await ObjectRepository.getObject(id);
     if (error) return { error: error };
     return { value: value };
-  }
+  };
   createObject = async (
     img: string,
     name: string,
@@ -32,6 +32,31 @@ class ObjectsService {
     if (error) return { error: error };
     return { value: value };
   };
+  deleteObject = async (id: string) => {
+    const { value, error } = await ObjectRepository.deleteObject(id);
+    if (error) return { error: error };
+    return { value: value };
+  };
+  editObject = async (id: string, rate: number) => {
+    const { value, error } = await ObjectRepository.editObject(
+      id,
+      rate
+    );
+    if (error) return { error: error };
+    return { value: value };
+  };
+  getObjectByName = async (name: string) => {
+    const { value, error } = await ObjectRepository.getObjectByName(
+      name
+    );
+    if (error) return { error: error };
+    return { value: value };
+  };
+  getObjectsByQuery = async () => {
+    const { value, error } = await ObjectRepository.getObjectsByQuery();
+    if (error) return { error: error };
+    return { value: value };
+  }
   // deleteUser = async (id: string) => {
   //   const { value, error } = await UsersRepository.deleteUser(id);
   //   if (error) return { error: error };

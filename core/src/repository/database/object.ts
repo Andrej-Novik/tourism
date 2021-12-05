@@ -6,21 +6,25 @@ import DBConnector from './connector';
 class ObjectRepository implements IObjectsRepository {
   getList = async () => {
     try {
-      const response = await DBConnector.connector?.getRepository(ObjectItem).find();
+      const response = await DBConnector.connector
+        ?.getRepository(ObjectItem)
+        .find();
       return { value: response };
     } catch (e) {
       return { error: e };
     }
   };
-    getObject = async (id: string) => {
+  getObject = async (id: string) => {
     try {
-      const response = await DBConnector.connector?.getRepository(ObjectItem).findOne({ where: { id } })
+      const response = await DBConnector.connector
+        ?.getRepository(ObjectItem)
+        .findOne({ where: { id } });
       return { value: response };
     } catch (e) {
       return { error: e };
     }
   };
-	createObject = async (
+  createObject = async (
     img: string,
     name: string,
     country: string,
@@ -36,6 +40,48 @@ class ObjectRepository implements IObjectsRepository {
       return { error: e };
     }
   };
+  deleteObject = async (id: string) => {
+    try {
+      const response = await DBConnector.connector
+        ?.getRepository(ObjectItem)
+        .delete(id);
+      return { value: !!response.affected };
+    } catch (e) {
+      return { error: e };
+    }
+  };
+  editObject = async (id: string, rate: number) => {
+    try {
+      const response = await DBConnector.connector
+        ?.getRepository(ObjectItem)
+        .update(id, { rate });
+      return { value: response };
+    } catch (e) {
+      return { error: e };
+    }
+  };
+  getObjectByName = async (name: string) => {
+    try {
+      const response = await DBConnector.connector
+        ?.getRepository(ObjectItem)
+        .findOne({ where: { name } });
+      return { value: response };
+    } catch (e) {
+      return { error: e };
+    }
+  };
+  getObjectsByQuery = async () => {
+    try {
+      const response = await DBConnector.connector
+        ?.getRepository(ObjectItem)
+        .find();
+      const res = response.splice(0,5)
+      console.log(res)
+      return { value: res };
+    } catch (e) {
+      return { error: e };
+    }
+  }
   // getUser = async (id: string) => {
   //   try {
   //     const response = await DBConnector.connector?.getRepository(User);
@@ -76,7 +122,5 @@ class ObjectRepository implements IObjectsRepository {
   //     return { error: e };
   //   }
   // };
-
-
 }
 export default new ObjectRepository();

@@ -29,6 +29,30 @@ class ObjectsService {
                 return { error: error };
             return { value: value };
         };
+        this.deleteObject = async (id) => {
+            const { value, error } = await object_1.default.deleteObject(id);
+            if (error)
+                return { error: error };
+            return { value: value };
+        };
+        this.editObject = async (id, rate) => {
+            const { value, error } = await object_1.default.editObject(id, rate);
+            if (error)
+                return { error: error };
+            return { value: value };
+        };
+        this.getObjectByName = async (name) => {
+            const { value, error } = await object_1.default.getObjectByName(name);
+            if (error)
+                return { error: error };
+            return { value: value };
+        };
+        this.getObjectsByQuery = async () => {
+            const { value, error } = await object_1.default.getObjectsByQuery();
+            if (error)
+                return { error: error };
+            return { value: value };
+        };
         // deleteUser = async (id: string) => {
         //   const { value, error } = await UsersRepository.deleteUser(id);
         //   if (error) return { error: error };
