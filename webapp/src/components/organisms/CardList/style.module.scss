@@ -1,22 +1,28 @@
 @import "../../../assets/styles/common.scss";
 
-.container {
-  @include container;
-  .title {
-    @include H32;
-    margin: 0 0 1.5rem 0;
-  }
-  .error {
-    @include H32;
-    font-size: 2rem;
-    color: red;
-  }
-  .list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    @include custom(850) {
-      grid-template-columns: 1fr;
+.wrapper {
+  background-color: $grayBg;
+  min-height: calc(100vh - 10rem);
+  padding: 5rem 0 0 0;
+  .container {
+    @include container;
+    .title {
+      @include H32;
+      margin: 0 0 1.5rem 0;
+    }
+    .error {
+      @include H32;
+      font-size: 2rem;
+      color: red;
+    }
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 0 0 3.5rem 0;
+      @include custom(850) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
