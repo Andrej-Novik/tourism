@@ -19,9 +19,9 @@ export function loadingError(value) {
 export const setCurrentObject = (object) => {
   return { type: SET_CURRENT_OBJECT, payload: object };
 };
-export function changeRate(id, rate) {
+export const changeRate = (id, rate) => {
   return { type: CHANGE_RATE, id, rate };
-}
+};
 
 export const getObjectsFromBD = () => async (dispatch) => {
   dispatch(objectsLoading(true));
@@ -61,6 +61,7 @@ export const setObjectsIntoBD =
   };
 
 export const updateRate = (id, rate) => async (dispatch) => {
+  
   dispatch(objectsLoading(true));
   const { value, error } = await Repository.APIObjects.updateObject(id, rate);
   if (error || !value) {

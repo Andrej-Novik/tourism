@@ -8,7 +8,15 @@ import {
 
 export const initialState = {
   objects: [],
-  currentObject: [{}],
+	currentObject: {
+		img: "",
+		name: "",
+		country: "",
+		text: "",
+		rate: "",
+		id: ""
+
+	},
   isError: false,
   isLoader: false,
 };
@@ -40,12 +48,13 @@ const objects = (state = initialState, action) => {
       };
     }
     case CHANGE_RATE: {
+      console.log(action.rate, action.id);
       let rate = action.rate;
       return {
         ...state,
-        objects: state.objects.map((obj) =>
-          obj.id === action.id ? { ...obj, rate } : obj
-        ),
+        currentObject: {...state.currentObject, rate }
+          
+        
       };
     }
     default:

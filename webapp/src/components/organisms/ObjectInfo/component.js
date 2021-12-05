@@ -5,6 +5,7 @@ import row from "../../../assets/icons/rowToLeft.svg";
 import style from "./style.module.scss";
 
 const ObjectInfo = ({
+	id,
   img,
   name,
   country,
@@ -32,8 +33,8 @@ const ObjectInfo = ({
   const sub = (event) => {
     event.preventDefault();
     if (newRate >= 1 && newRate <= 5) {
-			submit(newRate);
-			changeNewRate(rate)
+			submit(id, newRate);
+			changeNewRate("")
     } else changeError(true);
   };
 
