@@ -12,6 +12,7 @@ const Card = ({
   setLiked,
   likedData,
   deleteObg,
+	
 }) => {
   const isLikedPage = useLocation().pathname === "/liked";
   let [isLiked, setIsLiked] = useState(false);

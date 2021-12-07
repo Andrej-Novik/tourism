@@ -1,6 +1,9 @@
-import Card from "../../molecules/Card";
-import Loader from "../../atoms/Loader";
-import style from "./style.module.scss";
+import Card from '../../molecules/Card';
+import Loader from '../../atoms/Loader';
+import Search from '../Search/';
+import style from './style.module.scss';
+import { useEffect } from 'react';
+import row from '../../../assets/icons/rowToLeft.svg';
 
 const CardList = ({
   objects,
@@ -8,13 +11,17 @@ const CardList = ({
   isLoader,
   sortUp,
   sortDown,
-  setLiked,
-  likedData,
-  deleteObg,
+  isSearch,
+  searchObject,
+	backToCatalog,
+	likedData,
+	setLiked,
+	deleteObg
 }) => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
+        <Search />
         <div className={style.block}>
           <h2 className={style.title}>Каталог</h2>
           <div className={style.btns}>
@@ -23,30 +30,71 @@ const CardList = ({
             <button onClick={() => sortDown(objects)}>убыв</button>
           </div>
         </div>
-        {isError ? (
-          <div className={style.error}>TOURISM OBJECTS NOT FAUND</div>
-        ) : isLoader ? (
-          <Loader />
-        ) : (
-          <div className={style.list}>
-            {objects.map((card) => {
-              return (
-                <Card
-                  key={card.name}
-                  img={card.img}
-                  title={card.name}
-                  country={card.country}
-                  rate={card.rate}
-                  id={card.id}
-                  text={card.text}
-                  setLiked={setLiked}
-                  deleteObg={deleteObg}
-                  likedData={likedData}
-                />
-              );
-            })}
-          </div>
-        )}
+        <>
+          {!isSearch ? (
+            objects.length ? (
+              <>
+                <div className={style.list}>
+                  {objects.map((card) => {
+                    return (
+                      <Card
+                        key={card.name}
+                        img={card.img}
+                        title={card.name}
+                        country={card.country}
+                        rate={card.rate}
+												id={card.id}
+												likedData={likedData}
+												setLiked={setLiked}
+												deleteObg={deleteObg}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            ) : null
+          ) : searchObject.length ? (
+            <>
+              <div className={style.list}>
+                {searchObject.map((card) => {
+                  return (
+                    <Card
+                      key={card.name}
+                      img={card.img}
+                      title={card.name}
+                      country={card.country}
+                      rate={card.rate}
+											id={card.id}
+											setLiked={setLiked}
+											likedData={likedData}
+											deleteObg={deleteObg}
+                    />
+                  );
+                })}
+                <button
+                  to={'/catalog'}
+                  className={style.link}
+                  onClick={() => backToCatalog()}
+                >
+                  <div>
+                    <img src={row} />
+                    <div>Назад в каталог</div>
+                  </div>
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              {!searchObject.length && isLoader ? (
+                <Loader />
+              ) : (
+                <p data-failed-search-text>
+                  Такой достопримечательности нет в нашем приложении. Проверьте данные, которые вы ввели или попробуйте ещё раз.
+                </p>
+              )}
+            </>
+          )}
+        </>
       </div>
     </div>
   );

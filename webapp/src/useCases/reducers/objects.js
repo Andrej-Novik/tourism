@@ -7,19 +7,24 @@ import {
   SET_SORT_OBJECTS,
   SET_LIKED_OBJECTS,
   DELETE_OBJECT,
+  IS_SEARCH,
+  SEARCH_OBJECTS
 } from "../actionTypes/objects";
 
 export const initialState = {
   objects: [],
-  currentObject: {
-    img: "",
-    name: "",
-    country: "",
-    text: "",
-    rate: "",
-    id: "",
-  },
   likedObjects: JSON.parse(localStorage.getItem("liked")) || [],
+	currentObject: {
+		img: "",
+		name: "",
+		country: "",
+		text: "",
+		rate: "",
+		id: ""
+
+	},
+  isSearch: false,
+  searchObject: [],
   isError: false,
   isLoader: false,
   sortBy: "up",
@@ -74,6 +79,18 @@ const objects = (state = initialState, action) => {
       return {
         ...state,
         objects: state.objects.filter((i) => i.id !== action.id),
+      };
+    }
+    case IS_SEARCH: {
+      return {
+        ...state,
+        isSearch: action.payload,
+      };
+    }
+    case SEARCH_OBJECTS: {
+      return {
+        ...state,
+        searchObject: action.payload,
       };
     }
     default:

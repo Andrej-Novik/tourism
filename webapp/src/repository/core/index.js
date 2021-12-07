@@ -77,6 +77,19 @@ export class Core {
     }
     return result;
   };
+  searchObject = async (name) => {
+    const result = {
+      value: null,
+      error: null,
+    };
+    try {
+      const response = await Connector.connector.get(`/api/objects/search/${name}`);
+      result.value = response.data;
+    } catch (e) {
+      result.error = e.response;
+    }
+    return result;
+  };
 }
 
 export default new Core();

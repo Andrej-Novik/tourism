@@ -6,10 +6,12 @@ import {
   setStateObjects,
   setSortObjects,
   setLikedObjects,
-  deleteObjectFromBD,
+	deleteObjectFromBD,
+	setSearchObjects,
+	isSearch as IsSearch
 } from "../../../useCases/actions/objects";
-import CardList from "./component";
-//import json from "../../../content.json";
+import CardList from './component';
+// import json from "../../../content.json";
 
 const CardListContainer = () => {
   const dispatch = useDispatch();
@@ -27,6 +29,9 @@ const CardListContainer = () => {
   const isError = useSelector((state) => state.objects.isError);
   const isLoader = useSelector((state) => state.objects.isLoader);
   let likedData = useSelector((state) => state.objects.likedObjects);
+
+  const searchObject = useSelector((state) => state.objects.searchObject);
+  const isSearch = useSelector((state) => state.objects.isSearch);
 
   const sortUp = (object) => {
     const obj = object.sort((a, b) => (a.rate > b.rate ? 1 : -1));
@@ -70,6 +75,10 @@ const CardListContainer = () => {
       }
     }
   };
+  const backToCatalog = () => {
+    dispatch(IsSearch(false))
+    dispatch(setSearchObjects([]))
+  }
   //const setObjects = () => {
   //  for (let i = 0; i <= json.length - 1; i++) {
   //    dispatch(
@@ -94,6 +103,9 @@ const CardListContainer = () => {
         sortDown={sortDown}
         setLiked={setLiked}
         deleteObg={deleteObg}
+        searchObject={searchObject}
+        isSearch={isSearch}
+        backToCatalog={backToCatalog}
       />
       {/*<button onClick={setObjects}>SET</button>*/}
     </div>
