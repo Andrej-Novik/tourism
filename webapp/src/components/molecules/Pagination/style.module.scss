@@ -1,0 +1,64 @@
+@import '../../../assets/styles/breakpoints.scss';
+@import '../../../assets/styles/colors.scss';
+
+.paginator {
+  display: flex;
+  align-items: center;
+  .block {
+    display: flex;
+    .end {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      color: $black;
+      margin: 0 1rem;
+    }
+  }
+  .arrows {
+    display: flex;
+    margin-left: 2.5rem;
+    button {
+      height: 2rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.button,
+.buttonActive {
+  min-width: 2rem;
+  height: 2rem;
+  border: 1px solid transparent;
+  background: transparent;
+  margin-right: 0.9375rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.buttonActive {
+  color: $primary;
+  background: $white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+@include tablet {
+  .paginator {
+    margin-bottom: 1.875rem;
+  }
+}
+
+@include mobile {
+  .paginator {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    .arrows {
+      margin: 1.875rem 0 0;
+      button:first-child {
+        margin-right: 1.875rem;
+      }
+    }
+  }
+}
