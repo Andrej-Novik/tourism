@@ -3,7 +3,7 @@ import Loader from '../../atoms/Loader';
 import style from './style.module.scss';
 import { useEffect } from 'react';
 
-const CardList = ({ objects, isError, isLoader,sortUp, sortDown, setLiked }) => {
+const CardList = ({ objects, isError, isLoader,sortUp, sortDown, setLiked, likedData }) => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
@@ -32,6 +32,7 @@ const CardList = ({ objects, isError, isLoader,sortUp, sortDown, setLiked }) => 
 									id={card.id}
 									text={card.text}
 									setLiked={setLiked}
+									likedData={likedData}
                 />
               );
             })}

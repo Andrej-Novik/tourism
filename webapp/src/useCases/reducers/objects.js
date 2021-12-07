@@ -4,7 +4,8 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
-  SET_SORT_OBJECTS,
+	SET_SORT_OBJECTS,
+	SET_LIKED_OBJECTS
 } from "../actionTypes/objects";
 
 export const initialState = {
@@ -17,7 +18,7 @@ export const initialState = {
     rate: "",
     id: "",
   },
-  likedObjects: [],
+  likedObjects: JSON.parse(localStorage.getItem("liked")) || [],
   isError: false,
   isLoader: false,
   sortBy: "up",
@@ -30,7 +31,13 @@ const objects = (state = initialState, action) => {
         ...state,
         objects: action.payload,
       };
-    }
+		}
+		case SET_LIKED_OBJECTS: {
+      return {
+        ...state,
+        likedObjects: JSON.parse(localStorage.getItem("liked")) || [],
+      };
+		}
     case SET_SORT_OBJECTS: {
       return {
         ...state,

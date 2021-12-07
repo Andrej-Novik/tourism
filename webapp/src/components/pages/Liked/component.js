@@ -1,7 +1,7 @@
 import Card from "../../molecules/Card";
 import style from "./style.module.scss";
 
-const Liked = ({ liked }) => {
+const Liked = ({ liked, likedData, setLiked }) => {
   return (
     <div className={style.wrapper}>
       {liked.length ? (
@@ -9,18 +9,22 @@ const Liked = ({ liked }) => {
           {liked.map((card) => {
             return (
               <Card
-                key={card.name}
+                key={card.img}
                 img={card.img}
                 title={card.title}
                 country={card.country}
                 rate={card.rate}
                 id={card.id}
+                likedData={likedData}
+                setLiked={setLiked}
               />
             );
           })}{" "}
         </div>
       ) : (
-        <div className={style.container}>Нет добавленных объктов</div>
+        <div className={style.container}>
+          <h3>Нет добавленных объктов</h3>
+        </div>
       )}
     </div>
   );

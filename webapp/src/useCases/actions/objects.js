@@ -4,12 +4,16 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
-	SET_SORT_OBJECTS,
+  SET_SORT_OBJECTS,
+  SET_LIKED_OBJECTS,
 } from "../actionTypes/objects";
 import Repository from "../../repository";
 
 export const setStateObjects = (objects) => {
   return { type: SET_STATE_OBJECTS, payload: objects };
+};
+export const setLikedObjects = () => {
+  return { type: SET_LIKED_OBJECTS };
 };
 export const setSortObjects = (objects) => {
   return { type: SET_SORT_OBJECTS, payload: objects };
@@ -65,7 +69,6 @@ export const setObjectsIntoBD =
   };
 
 export const updateRate = (id, rate) => async (dispatch) => {
-  
   dispatch(objectsLoading(true));
   const { value, error } = await Repository.APIObjects.updateObject(id, rate);
   if (error || !value) {
