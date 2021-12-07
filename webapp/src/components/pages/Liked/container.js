@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLikedObjects } from "../../../useCases/actions/objects";
 
 const LikedContainer = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	
   let cards = JSON.parse(localStorage.getItem("liked")) || [];
   let likedData = useSelector((state) => state.objects.likedObjects);
 

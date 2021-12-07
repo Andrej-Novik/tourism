@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import style from "./style.module.scss";
 
-const Card = ({ img, title, country, rate, text, id, setLiked, likedData }) => {
-  let temp = [];
-  if (rate) {
-    for (let i = 0; i < rate; i++) {
-      temp.push(i);
-    }
-  }
-
+const Card = ({
+  img,
+  title,
+  country,
+  rate,
+  text,
+  id,
+  setLiked,
+  likedData,
+  deleteObg,
+}) => {
+  const isLikedPage = useLocation().pathname === "/liked";
   let [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
@@ -30,12 +34,26 @@ const Card = ({ img, title, country, rate, text, id, setLiked, likedData }) => {
     }
   };
 
+  const del = () => {
+    deleteObg(id);
+    setLiked({ title, isLiked });
+  };
+
+  let temp = [];
+  if (rate) {
+    for (let i = 0; i < rate; i++) {
+      temp.push(i);
+    }
+  }
+
   return (
     <div className={style.wrapper}>
-      <div className={style.cross}>
-        <span></span>
-      </div>
-      <div className={style.like} onClick={set}>
+      {!isLikedPage && (
+        <div className={style.cross} onClick={del}>
+          <span></span>
+        </div>
+      )}
+      <div className={!isLikedPage ? style.like : style.likeTop} onClick={set}>
         {!isLiked ? (
           <img src="http://s1.iconbird.com/ico/2013/9/452/w512h4961380477090star.png" />
         ) : (

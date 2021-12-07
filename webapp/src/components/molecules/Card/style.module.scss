@@ -11,10 +11,15 @@
     width: 1.6rem;
     height: 1.5rem;
     cursor: pointer;
-		img {
-			width: 100%;
-		}
   }
+	.likeTop {
+		position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 1.6rem;
+    height: 1.5rem;
+    cursor: pointer;
+	}
   .cross {
     position: absolute;
     top: 1.2rem;

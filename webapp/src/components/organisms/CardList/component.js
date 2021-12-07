@@ -1,9 +1,17 @@
-import Card from '../../molecules/Card';
-import Loader from '../../atoms/Loader';
-import style from './style.module.scss';
-import { useEffect } from 'react';
+import Card from "../../molecules/Card";
+import Loader from "../../atoms/Loader";
+import style from "./style.module.scss";
 
-const CardList = ({ objects, isError, isLoader,sortUp, sortDown, setLiked, likedData }) => {
+const CardList = ({
+  objects,
+  isError,
+  isLoader,
+  sortUp,
+  sortDown,
+  setLiked,
+  likedData,
+  deleteObg,
+}) => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
@@ -29,10 +37,11 @@ const CardList = ({ objects, isError, isLoader,sortUp, sortDown, setLiked, liked
                   title={card.name}
                   country={card.country}
                   rate={card.rate}
-									id={card.id}
-									text={card.text}
-									setLiked={setLiked}
-									likedData={likedData}
+                  id={card.id}
+                  text={card.text}
+                  setLiked={setLiked}
+                  deleteObg={deleteObg}
+                  likedData={likedData}
                 />
               );
             })}

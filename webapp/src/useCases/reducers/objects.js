@@ -4,8 +4,9 @@ import {
   ERROR_OBJECT_USERS,
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
-	SET_SORT_OBJECTS,
-	SET_LIKED_OBJECTS
+  SET_SORT_OBJECTS,
+  SET_LIKED_OBJECTS,
+  DELETE_OBJECT,
 } from "../actionTypes/objects";
 
 export const initialState = {
@@ -31,13 +32,13 @@ const objects = (state = initialState, action) => {
         ...state,
         objects: action.payload,
       };
-		}
-		case SET_LIKED_OBJECTS: {
+    }
+    case SET_LIKED_OBJECTS: {
       return {
         ...state,
         likedObjects: JSON.parse(localStorage.getItem("liked")) || [],
       };
-		}
+    }
     case SET_SORT_OBJECTS: {
       return {
         ...state,
@@ -63,11 +64,16 @@ const objects = (state = initialState, action) => {
       };
     }
     case CHANGE_RATE: {
-      console.log(action.rate, action.id);
       let rate = action.rate;
       return {
         ...state,
         currentObject: { ...state.currentObject, rate },
+      };
+    }
+    case DELETE_OBJECT: {
+      return {
+        ...state,
+        objects: state.objects.filter((i) => i.id !== action.id),
       };
     }
     default:

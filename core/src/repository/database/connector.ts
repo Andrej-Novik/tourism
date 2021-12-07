@@ -8,7 +8,7 @@ class DBConnector {
 			type: 'postgres',
 			host: "localhost",
 			username: "postgres",
-			password: "Robin_2002",
+			password: "",
 			database: "tourism",
 			entities: ['dist/models/dbm/*{.ts,.js}'],
 			migrations: ['dist/migrations/*{.ts,.js}'],

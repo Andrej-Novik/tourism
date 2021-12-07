@@ -19,7 +19,7 @@ const Liked = ({ liked, likedData, setLiked }) => {
                 setLiked={setLiked}
               />
             );
-          })}{" "}
+          })}
         </div>
       ) : (
         <div className={style.container}>
