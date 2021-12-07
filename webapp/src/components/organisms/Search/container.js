@@ -1,8 +1,7 @@
 import Search from './component';
 import { useDispatch } from 'react-redux';
 import {
-  setSearchObjectsFromBD,
-  isSearch,
+  setSearchObjectsFromBD
 } from '../../../useCases/actions/objects';
 const SearchContainer = () => {
   const dispatch = useDispatch();

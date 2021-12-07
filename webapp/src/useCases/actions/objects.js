@@ -6,9 +6,12 @@ import {
   CHANGE_RATE,
   SET_SORT_OBJECTS,
   IS_SEARCH,
-  SEARCH_OBJECTS
-} from "../actionTypes/objects";
-import Repository from "../../repository";
+  SEARCH_OBJECTS,
+  GET_OBJECTS_LENGTH,
+  SET_CURRENT_PAGE,
+  SET_PAGINATION_PAGE
+} from '../actionTypes/objects';
+import Repository from '../../repository';
 
 export const setStateObjects = (objects) => {
   return { type: SET_STATE_OBJECTS, payload: objects };
@@ -35,7 +38,7 @@ export const getObjectsFromBD = () => async (dispatch) => {
   if (!value || error) {
     dispatch(loadingError(true));
   }
-  dispatch(setStateObjects(value));
+  dispatch(setStateObjects(value.sort((a, b) => (a.rate > b.rate ? -1 : 1))));
   dispatch(objectsLoading(false));
 };
 
@@ -67,7 +70,6 @@ export const setObjectsIntoBD =
   };
 
 export const updateRate = (id, rate) => async (dispatch) => {
-  
   dispatch(objectsLoading(true));
   const { value, error } = await Repository.APIObjects.updateObject(id, rate);
   if (error || !value) {
@@ -78,12 +80,32 @@ export const updateRate = (id, rate) => async (dispatch) => {
   dispatch(objectsLoading(false));
 };
 
-export const setSearchObjects = (data) => ({ type: SEARCH_OBJECTS, payload: data });
+export const setSearchObjects = (data) => ({
+  type: SEARCH_OBJECTS,
+  payload: data,
+});
 export const isSearch = (bool) => ({ type: IS_SEARCH, payload: bool });
-export const setSearchObjectsFromBD = (name = '') => async (dispatch) => {
-  dispatch(isSearch(true))
-  dispatch(objectsLoading(true));
-  const { value, error } = await Repository.APIObjects.searchObject(name);
-  error || !value ? dispatch(setSearchObjects([])) : dispatch(setSearchObjects([value]));
-  dispatch(objectsLoading(false));
-};
+export const setSearchObjectsFromBD =
+  (name = '') =>
+  async (dispatch) => {
+    dispatch(isSearch(true));
+    dispatch(objectsLoading(true));
+    const { value, error } = await Repository.APIObjects.searchObject(name);
+    error || !value
+      ? dispatch(setSearchObjects([]))
+      : dispatch(setSearchObjects([value]));
+    dispatch(objectsLoading(false));
+  };
+
+export const setObjectsLength = (length) => ({
+  type: GET_OBJECTS_LENGTH,
+  payload: length,
+});
+export const setCurrentPage = (number) => ({
+  type: SET_CURRENT_PAGE,
+  payload: number,
+});
+export const setPaginationPage = (number) => ({
+  type: SET_PAGINATION_PAGE,
+  payload: number
+})

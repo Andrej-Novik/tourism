@@ -4,6 +4,7 @@ $country: rgba(81, 226, 69, 1);
 $countryBg: rgba(48, 255, 30, 0.2);
 $gray: rgba(45, 45, 45, 1);
 $grayBg: #FBFBFB;
+$white: #fff;
 
 @mixin cardBorder {
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
