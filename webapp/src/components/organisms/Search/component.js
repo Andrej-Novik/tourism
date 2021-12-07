@@ -21,7 +21,7 @@ const Search = ({ onSubmit }) => {
         <img src={search} />
         <span>Найти</span>
       </div>
-      <input ref={request} type="text" />
+      <input ref={request} type="text" placeholder={'Введите название'}/>
     </form>
   );
 };

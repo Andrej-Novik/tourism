@@ -3,9 +3,9 @@ import style from "./style.module.scss";
 
 const Catalog = () => {
   return (
-    <div>
+    <>
       <CardList />
-    </div>
+    </>
   );
 };
 

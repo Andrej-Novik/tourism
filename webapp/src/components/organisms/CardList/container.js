@@ -1,16 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import CardList from "./component";
 import {
   getObjectsFromBD,
   //setObjectsIntoBD,
   setStateObjects,
   setSortObjects,
   setLikedObjects,
-	deleteObjectFromBD,
-	setSearchObjects,
-	isSearch as IsSearch
+  deleteObjectFromBD,
+  setSearchObjects,
+  setObjectsLength,
+  setPaginationPage,
+  setCurrentPage,
+  isSearch as IsSearch,
 } from "../../../useCases/actions/objects";
-import CardList from './component';
 // import json from "../../../content.json";
 
 const CardListContainer = () => {
@@ -26,12 +29,18 @@ const CardListContainer = () => {
   }, [sortBy]);
 
   const objects = useSelector((state) => state.objects.objects);
+  const objectsLength = useSelector((state) => state.objects.objectsLength);
+  const currentPage = useSelector((state) => state.objects.currentPage);
   const isError = useSelector((state) => state.objects.isError);
   const isLoader = useSelector((state) => state.objects.isLoader);
   let likedData = useSelector((state) => state.objects.likedObjects);
 
   const searchObject = useSelector((state) => state.objects.searchObject);
   const isSearch = useSelector((state) => state.objects.isSearch);
+
+  useEffect(() => {
+    dispatch(setObjectsLength(objects.length));
+  }, [objects, objectsLength]);
 
   const sortUp = (object) => {
     const obj = object.sort((a, b) => (a.rate > b.rate ? 1 : -1));
@@ -76,9 +85,33 @@ const CardListContainer = () => {
     }
   };
   const backToCatalog = () => {
-    dispatch(IsSearch(false))
-    dispatch(setSearchObjects([]))
-  }
+    dispatch(IsSearch(false));
+    dispatch(setSearchObjects([]));
+  };
+
+  const onChangePage = (number, side = null) => {
+    if (number && !side) {
+      dispatch(setCurrentPage(number));
+    }
+    if (!number && side === "prev") {
+      if (currentPage >= 2) {
+        dispatch(setCurrentPage(currentPage - 1));
+      }
+    }
+    if (!number && side === "next") {
+      if (currentPage < Math.ceil(objectsLength / 10)) {
+        dispatch(setCurrentPage(currentPage + 1));
+      }
+    }
+    if (!number && side === "end") {
+      if (currentPage + 2 > Math.ceil(objectsLength / 10)) {
+        dispatch(setCurrentPage(Math.ceil(objectsLength / 10)));
+      } else {
+        dispatch(setCurrentPage(currentPage + 2));
+      }
+    }
+  };
+
   //const setObjects = () => {
   //  for (let i = 0; i <= json.length - 1; i++) {
   //    dispatch(
@@ -106,10 +139,13 @@ const CardListContainer = () => {
         searchObject={searchObject}
         isSearch={isSearch}
         backToCatalog={backToCatalog}
+        objectsLength={objectsLength}
+        currentPage={currentPage}
+        onChangePage={onChangePage}
+        // showObjects={showObjects}
       />
       {/*<button onClick={setObjects}>SET</button>*/}
     </div>
   );
 };
-
 export const container = CardListContainer;

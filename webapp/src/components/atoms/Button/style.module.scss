@@ -1,0 +1,84 @@
+@import "../../../assets/styles/colors.scss";
+
+.button,
+.buttonActive {
+  min-width: 2rem;
+  height: 2rem;
+  border: 1px solid transparent;
+  background: transparent;
+  margin-right: 0.9375rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.buttonActive {
+  color: $primary;
+  background: $white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+[color="yellow"] {
+  color: $primary;
+  background: $white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.buttonArrows {
+  margin-right: 0;
+  cursor: pointer;
+}
+
+.buttonView {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  svg {
+    cursor: pointer;
+    opacity: 0.4;
+  }
+}
+
+.buttonTransparent,
+.buttonBack {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 0.5rem;
+    pointer-events: none;
+  }
+  span {
+    pointer-events: none;
+  }
+}
+.buttonBack {
+  margin-top: 2.5rem;
+}
+
+.buttonMenu,
+.buttonMenuActive {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: $black;
+  background: transparent;
+  border-radius: 4px;
+  border: 1.4px solid $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+.buttonMenuActive {
+  background: $primary;
+}

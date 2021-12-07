@@ -8,7 +8,10 @@ import {
   SET_LIKED_OBJECTS,
   DELETE_OBJECT,
   IS_SEARCH,
-  SEARCH_OBJECTS
+  SEARCH_OBJECTS,
+  GET_OBJECTS_LENGTH,
+  SET_CURRENT_PAGE,
+  SET_PAGINATION_PAGE
 } from "../actionTypes/objects";
 
 export const initialState = {
@@ -23,6 +26,9 @@ export const initialState = {
 		id: ""
 
 	},
+  objectsLength: 10,
+  currentPage: 1,
+  paginationPage: 1,
   isSearch: false,
   searchObject: [],
   isError: false,
@@ -93,6 +99,25 @@ const objects = (state = initialState, action) => {
         searchObject: action.payload,
       };
     }
+    case GET_OBJECTS_LENGTH: {
+      return {
+        ...state,
+        objectsLength: action.payload
+      }
+    }
+    case SET_CURRENT_PAGE: {
+      return {
+        ...state,
+        currentPage: action.payload
+      }
+    }
+    case SET_PAGINATION_PAGE: {
+      return {
+        ...state,
+        paginationPage: action.payload
+      }
+    }
+
     default:
       return state;
   }
