@@ -5,7 +5,7 @@ import row from "../../../assets/icons/rowToLeft.svg";
 import style from "./style.module.scss";
 
 const ObjectInfo = ({
-	id,
+  id,
   img,
   name,
   country,
@@ -15,13 +15,6 @@ const ObjectInfo = ({
   isLoader,
   submit,
 }) => {
-  let temp = [];
-  if (rate) {
-    for (let i = 0; i < rate; i++) {
-      temp.push(i);
-    }
-  }
-
   let [isOpen, changeIsOpen] = useState(false);
   let [error, changeError] = useState(false);
   let [newRate, changeNewRate] = useState(rate);
@@ -33,10 +26,17 @@ const ObjectInfo = ({
   const sub = (event) => {
     event.preventDefault();
     if (newRate >= 1 && newRate <= 5) {
-			submit(id, newRate);
-			changeNewRate("")
+      submit(id, newRate);
+      changeNewRate("");
     } else changeError(true);
   };
+
+  let temp = [];
+  if (rate) {
+    for (let i = 0; i < rate; i++) {
+      temp.push(i);
+    }
+  }
 
   return (
     <div className={style.wrapper}>

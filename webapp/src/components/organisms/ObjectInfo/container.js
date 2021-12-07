@@ -10,8 +10,8 @@ const ObjectInfoContainer = () => {
 
   useEffect(() => {
     dispatch(getObjectFromBD(id));
-	}, []);
-	
+  }, []);
+
   const currentObject = useSelector((state) => state.objects.currentObject);
   const isError = useSelector((state) => state.objects.isError);
   const isLoader = useSelector((state) => state.objects.isLoader);

@@ -5,6 +5,8 @@ import {
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
   SET_SORT_OBJECTS,
+	SET_LIKED_OBJECTS,
+	DELETE_OBJECT,
   IS_SEARCH,
   SEARCH_OBJECTS,
   GET_OBJECTS_LENGTH,
@@ -15,6 +17,9 @@ import Repository from '../../repository';
 
 export const setStateObjects = (objects) => {
   return { type: SET_STATE_OBJECTS, payload: objects };
+};
+export const setLikedObjects = () => {
+  return { type: SET_LIKED_OBJECTS };
 };
 export const setSortObjects = (objects) => {
   return { type: SET_SORT_OBJECTS, payload: objects };
@@ -30,6 +35,20 @@ export const setCurrentObject = (object) => {
 };
 export const changeRate = (id, rate) => {
   return { type: CHANGE_RATE, id, rate };
+};
+export const removeObject = (id) => {
+  return { type: DELETE_OBJECT, id };
+};
+
+export const deleteObjectFromBD = (id) => async (dispatch) => {
+  dispatch(objectsLoading(true));
+  const { value, error } = await Repository.APIObjects.deleteObject(id);
+  if (error || !value) {
+    dispatch(loadingError(true));
+  } else {
+    dispatch(removeObject(id));
+  }
+  dispatch(objectsLoading(false));
 };
 
 export const getObjectsFromBD = () => async (dispatch) => {

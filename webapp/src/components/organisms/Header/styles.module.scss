@@ -7,6 +7,10 @@
     align-items: center;
     justify-content: space-between;
     height: 5rem;
+    .links {
+      display: flex;
+      gap: 1.5rem;
+    }
     .catalog {
       display: flex;
       align-items: center;
@@ -44,6 +48,16 @@
     }
     .forCardList {
       background-color: $primary;
+    }
+    .liked {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 7.8rem;
+      height: 2.5rem;
+      border: 0.125rem solid $primary;
+      border-radius: 0.25rem;
+      padding: 1.25rem;
     }
   }
 }

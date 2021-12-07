@@ -1,4 +1,4 @@
-@import '../../../assets/styles/common.scss';
+@import "../../../assets/styles/common.scss";
 
 .block {
   display: flex;
@@ -7,8 +7,11 @@
   margin: 0 0 1.5rem 0;
 }
 .btns {
+  span {
+    font-size: 15px;
+  }
   button {
-    padding: 0.2rem;
+    padding: 0 0.5rem;
     margin: 0 0 0 0.5rem;
   }
 }

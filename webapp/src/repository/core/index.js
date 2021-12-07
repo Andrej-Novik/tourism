@@ -1,4 +1,3 @@
-import * as axios from "axios";
 import Connector from "./connector";
 
 export class Core {

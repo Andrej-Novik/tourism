@@ -6,7 +6,6 @@ import row from '../../../assets/icons/rowToLeft.svg';
 import Pagination from '../../molecules/Pagination/';
 import Toggle from '../../molecules/Toggle';
 
-
 const CardList = ({
   objects,
   isLoader,
@@ -14,10 +13,12 @@ const CardList = ({
   sortDown,
   isSearch,
   searchObject,
-  backToCatalog,
+	backToCatalog,
+	likedData,
+	setLiked,
+	deleteObg,
   objectsLength,
   currentPage,
-  showObjects,
   onChangePage
 }) => {
 
@@ -39,7 +40,10 @@ const CardList = ({
                         title={card.name}
                         country={card.country}
                         rate={card.rate}
-                        id={card.id}
+												id={card.id}
+												likedData={likedData}
+												setLiked={setLiked}
+												deleteObg={deleteObg}
                       />
                     );
                   })}
@@ -57,7 +61,10 @@ const CardList = ({
                       title={card.name}
                       country={card.country}
                       rate={card.rate}
-                      id={card.id}
+											id={card.id}
+											setLiked={setLiked}
+											likedData={likedData}
+											deleteObg={deleteObg}
                     />
                   );
                 })}

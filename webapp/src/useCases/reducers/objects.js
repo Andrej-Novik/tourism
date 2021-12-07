@@ -5,6 +5,8 @@ import {
   SET_CURRENT_OBJECT,
   CHANGE_RATE,
   SET_SORT_OBJECTS,
+  SET_LIKED_OBJECTS,
+  DELETE_OBJECT,
   IS_SEARCH,
   SEARCH_OBJECTS,
   GET_OBJECTS_LENGTH,
@@ -14,6 +16,7 @@ import {
 
 export const initialState = {
   objects: [],
+  likedObjects: JSON.parse(localStorage.getItem("liked")) || [],
 	currentObject: {
 		img: "",
 		name: "",
@@ -30,7 +33,7 @@ export const initialState = {
   searchObject: [],
   isError: false,
   isLoader: false,
-  sortBy: 'up'
+  sortBy: "up",
 };
 
 const objects = (state = initialState, action) => {
@@ -39,6 +42,12 @@ const objects = (state = initialState, action) => {
       return {
         ...state,
         objects: action.payload,
+      };
+    }
+    case SET_LIKED_OBJECTS: {
+      return {
+        ...state,
+        likedObjects: JSON.parse(localStorage.getItem("liked")) || [],
       };
     }
     case SET_SORT_OBJECTS: {
@@ -66,13 +75,16 @@ const objects = (state = initialState, action) => {
       };
     }
     case CHANGE_RATE: {
-      console.log(action.rate, action.id);
       let rate = action.rate;
       return {
         ...state,
-        currentObject: {...state.currentObject, rate }
-          
-        
+        currentObject: { ...state.currentObject, rate },
+      };
+    }
+    case DELETE_OBJECT: {
+      return {
+        ...state,
+        objects: state.objects.filter((i) => i.id !== action.id),
       };
     }
     case IS_SEARCH: {
